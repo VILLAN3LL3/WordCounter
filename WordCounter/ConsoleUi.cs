@@ -11,5 +11,7 @@ namespace WordCounter
         }
 
         public void PrintResultToConsole(string text, int wordCount) => Console.WriteLine($"The text '{text}' contains {wordCount} words");
+
+        public void WaitForInput() => Console.ReadLine();
     }
 }

@@ -2,18 +2,29 @@
 {
     internal static class Program
     {
-        internal static void Main(string[] args)
-        {
-            var ui = new ConsoleUi();
-            var interactor = new Interactor();
+        private static readonly ConsoleUi _ui = new();
+        private static readonly Interactor _interactor = new();
+        private static readonly FileLoader _fileLoader = new();
 
+        internal static void Main(string[] args) => _fileLoader.GetFilename(args, UseFile, UseConsole);
+
+        private static void UseConsole()
+        {
             string text;
             while (true)
             {
-                text = ui.GetTextFromConsole();
-                int wordCount = interactor.CountWords(text);
-                ui.PrintResultToConsole(text, wordCount);
+                text = _ui.GetTextFromConsole();
+                int wordCount = _interactor.CountWords(text);
+                _ui.PrintResultToConsole(text, wordCount);
             }
+        }
+
+        private static void UseFile(string fileName)
+        {
+            string text = _fileLoader.ReadTextFromFile(fileName);
+            int wordCount = _interactor.CountWords(text);
+            _ui.PrintResultToConsole(text, wordCount);
+            _ui.WaitForInput();
         }
     }
 }
