@@ -14,6 +14,7 @@ namespace WordCounter.Tests
             get
             {
                 yield return new TestCaseData("Mary has a little lamb.", 4);
+                yield return new TestCaseData("Mary Mary has a little lamb.", 5);
                 yield return new TestCaseData("Mary has an hour left.", 5);
                 yield return new TestCaseData("", 0);
                 yield return new TestCaseData("Verstörend", 2);
