@@ -13,9 +13,6 @@ namespace WordCounter
 
         public int CountWords(ICollection<string> matchCollection) => matchCollection.Count;
 
-        public ICollection<string> Filter(ICollection<string> words, ICollection<string> stopWords)
-        {
-            return words.Where(w => !stopWords.Contains(w, StringComparer.InvariantCultureIgnoreCase)).ToList();
-        }
+        public ICollection<string> Filter(ICollection<string> words, ICollection<string> stopWords) => words.Where(w => !stopWords.Contains(w, StringComparer.InvariantCultureIgnoreCase)).ToList();
     }
 }

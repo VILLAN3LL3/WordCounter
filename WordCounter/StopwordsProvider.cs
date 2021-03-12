@@ -5,9 +5,6 @@ namespace WordCounter
 {
     public class StopwordsProvider
     {
-        public ICollection<string> GetStopWords()
-        {
-            return File.ReadAllLines("stopwords.txt");
-        }
+        public ICollection<string> GetStopWords() => File.ReadAllLines("stopwords.txt");
     }
 }

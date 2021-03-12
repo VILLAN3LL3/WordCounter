@@ -10,8 +10,9 @@ namespace WordCounter
             var stopwordsProvider = new StopwordsProvider();
 
             ICollection<string> words = wordSplitter.SplitWords(text);
-            var stopwords = stopwordsProvider.GetStopWords();
+            ICollection<string> stopwords = stopwordsProvider.GetStopWords();
             ICollection<string> filteredWords = wordSplitter.Filter(words, stopwords);
+
             return wordSplitter.CountWords(filteredWords);
         }
     }
