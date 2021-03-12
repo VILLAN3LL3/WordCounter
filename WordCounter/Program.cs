@@ -14,7 +14,7 @@
             _ui.PrintResultToConsole(text, wordCount);
             _ui.WaitForInput();
         }
-        , () =>
+        ,   () =>
         {
             string text;
             while (true)
