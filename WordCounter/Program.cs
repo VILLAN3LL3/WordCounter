@@ -1,12 +1,19 @@
-﻿using System;
-
-namespace WordCounter
+﻿namespace WordCounter
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        internal static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var ui = new ConsoleUi();
+            var interactor = new Interactor();
+
+            string text;
+            do
+            {
+                text = ui.GetTextFromConsole();
+                int wordCount = interactor.CountWords(text);
+                ui.PrintResultToConsole(text, wordCount);
+            } while (!string.IsNullOrWhiteSpace(text));
         }
     }
 }
