@@ -8,12 +8,12 @@
             var interactor = new Interactor();
 
             string text;
-            do
+            while (true)
             {
                 text = ui.GetTextFromConsole();
                 int wordCount = interactor.CountWords(text);
                 ui.PrintResultToConsole(text, wordCount);
-            } while (!string.IsNullOrWhiteSpace(text));
+            }
         }
     }
 }

@@ -21,13 +21,13 @@ namespace WordCounter.Tests
 
         [Test]
         [TestCaseSource(nameof(s_splitWordsTestData))]
-        public void SplitWords_StateUnderTest_ExpectedBehavior(string text, IList<string> expectedResult)
+        public void Should_Split_Text_Into_Words(string text, IList<string> expectedResult)
         {
             // Arrange
             WordSplitter wordSplitter = CreateWordSplitter();
 
             // Act
-            IList<string> result = wordSplitter.SplitWords(
+            ICollection<string> result = wordSplitter.SplitWords(
                 text);
 
             // Assert
@@ -45,7 +45,7 @@ namespace WordCounter.Tests
 
         [Test]
         [TestCaseSource(nameof(s_countWordsTestData))]
-        public void CountWords_StateUnderTest_ExpectedBehavior(IList<string> stringList, int expectedCount)
+        public void Should_Count_Words_Of_Supplied_Collection(ICollection<string> stringList, int expectedCount)
         {
             // Arrange
             WordSplitter wordSplitter = CreateWordSplitter();

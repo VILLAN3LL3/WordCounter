@@ -21,7 +21,7 @@ namespace WordCounter.Tests
 
         [Test]
         [TestCaseSource(nameof(s_countWordsTestData))]
-        public void CountWords_StateUnderTest_ExpectedBehavior(string text, int expectedCount)
+        public void Should_Count_Words_Of_Supplied_Text(string text, int expectedCount)
         {
             // Arrange
             Interactor interactor = CreateInteractor();

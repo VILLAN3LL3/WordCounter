@@ -7,7 +7,7 @@ namespace WordCounter
         public int CountWords(string text)
         {
             var wordSplitter = new WordSplitter();
-            IList<string> words = wordSplitter.SplitWords(text);
+            ICollection<string> words = wordSplitter.SplitWords(text);
             return wordSplitter.CountWords(words);
         }
     }
