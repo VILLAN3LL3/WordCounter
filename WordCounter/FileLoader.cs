@@ -9,10 +9,10 @@ namespace WordCounter
         {
             if (args.Length > 0)
             {
-                onFilenameFound.Invoke(args[0]);
+                onFilenameFound(args[0]);
                 return;
             }
-            onNoFilenameFound.Invoke();
+            onNoFilenameFound();
         }
 
         public string ReadTextFromFile(string fileName) => File.ReadAllText(fileName);
