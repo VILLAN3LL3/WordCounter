@@ -6,9 +6,13 @@ namespace WordCounter
     {
         public int CountWords(string text)
         {
-            var wordSplitter = new WordSplitter();
+            var wordSplitter = new WordCount();
+            var stopwordsProvider = new StopwordsProvider();
+
             ICollection<string> words = wordSplitter.SplitWords(text);
-            return wordSplitter.CountWords(words);
+            var stopwords = stopwordsProvider.GetStopWords();
+            ICollection<string> filteredWords = wordSplitter.Filter(words, stopwords);
+            return wordSplitter.CountWords(filteredWords);
         }
     }
 }
