@@ -82,5 +82,31 @@ namespace WordCounter.Tests
             // Assert
             result.Should().BeEquivalentTo(expectedResult);
         }
+
+        private static IEnumerable<TestCaseData> s_countUniqueWordsTestData
+        {
+            get
+            {
+                yield return new TestCaseData(new List<string>() { "Mary", "has", "a", "little", "lamb" }, 5);
+                yield return new TestCaseData(new List<string>(), 0);
+                yield return new TestCaseData(new List<string>() { "Humpty", "Dumpty", "sat", "on", "a", "wall", "Humpty", "Dumpty", "had", "a", "great", "fall" }, 9);
+                yield return new TestCaseData(new List<string>() { "Humpty", "Dumpty", "sat", "on", "A", "wall", "HUMPTY", "dumpty", "had", "a", "great", "fall" }, 9);
+            }
+        }
+
+        [Test]
+        [TestCaseSource(nameof(s_countUniqueWordsTestData))]
+        public void Should_Count_Unique_Words_Of_Supplied_Collection(ICollection<string> stringList, int expectedCount)
+        {
+            // Arrange
+            WordCount wordCount = CreateWordCount();
+
+            // Act
+            int result = wordCount.CountUniqueWords(
+                stringList);
+
+            // Assert
+            result.Should().Be(expectedCount);
+        }
     }
 }

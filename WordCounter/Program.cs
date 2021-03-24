@@ -10,19 +10,19 @@
             (fileName) =>
         {
             string text = _fileLoader.ReadTextFromFile(fileName);
-            int wordCount = _interactor.CountWords(text);
-            _ui.PrintResultToConsole(text, wordCount);
+            WordCountResult wordCountResult = _interactor.CountWords(text);
+            _ui.PrintResultToConsole(text, wordCountResult);
             _ui.WaitForInput();
         }
-        ,   () =>
-        {
-            string text;
-            while (true)
-            {
-                text = _ui.GetTextFromConsole();
-                int wordCount = _interactor.CountWords(text);
-                _ui.PrintResultToConsole(text, wordCount);
-            }
-        });
+        , () =>
+      {
+          string text;
+          while (true)
+          {
+              text = _ui.GetTextFromConsole();
+              WordCountResult wordCountResult = _interactor.CountWords(text);
+              _ui.PrintResultToConsole(text, wordCountResult);
+          }
+      });
     }
 }

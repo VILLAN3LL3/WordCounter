@@ -1,8 +1,7 @@
 {
   "profiles": {
     "WordCounter": {
-      "commandName": "Project",
-      "commandLineArgs": "meingedicht.txt"
+      "commandName": "Project"
     }
   }
 }

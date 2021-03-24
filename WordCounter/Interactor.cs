@@ -4,7 +4,7 @@ namespace WordCounter
 {
     public class Interactor
     {
-        public int CountWords(string text)
+        public WordCountResult CountWords(string text)
         {
             var wordSplitter = new WordCount();
             var stopwordsProvider = new StopwordsProvider();
@@ -13,7 +13,7 @@ namespace WordCounter
             ICollection<string> stopwords = stopwordsProvider.GetStopWords();
             ICollection<string> filteredWords = wordSplitter.Filter(words, stopwords);
 
-            return wordSplitter.CountWords(filteredWords);
+            return new WordCountResult(wordSplitter.CountWords(filteredWords), wordSplitter.CountUniqueWords(filteredWords));
         }
     }
 }
