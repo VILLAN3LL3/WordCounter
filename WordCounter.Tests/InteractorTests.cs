@@ -19,7 +19,7 @@ namespace WordCounter.Tests
                 yield return new TestCaseData("", new WordCountResult(0, 0));
                 yield return new TestCaseData("Verstörend", new WordCountResult(2, 2));
                 yield return new TestCaseData("Take Off Your Pants And Jacket", new WordCountResult(5, 5));
-                yield return new TestCaseData("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.", new WordCountResult(9, 7));
+                yield return new TestCaseData("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.", new WordCountResult(7, 6));
             }
         }
 

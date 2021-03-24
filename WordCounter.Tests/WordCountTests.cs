@@ -16,6 +16,7 @@ namespace WordCounter.Tests
                 yield return new TestCaseData("Mary has a little lamb.", new List<string>() { "Mary", "has", "a", "little", "lamb" });
                 yield return new TestCaseData("", new List<string>());
                 yield return new TestCaseData("Verstörend", new List<string>() { "Verst", "rend" });
+                yield return new TestCaseData("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.", new List<string>() { "Humpty-Dumpty", "sat", "on", "a", "wall", "Humpty-Dumpty", "had", "a", "great", "fall" });
             }
         }
 

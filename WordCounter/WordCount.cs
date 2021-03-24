@@ -7,7 +7,7 @@ namespace WordCounter
 {
     public class WordCount
     {
-        private readonly Regex _pattern = new("[A-Za-z]+");
+        private readonly Regex _pattern = new("[A-Za-z-]+");
 
         public ICollection<string> SplitWords(string text) => _pattern.Matches(text).Select(m => m.Value).ToList();
 
