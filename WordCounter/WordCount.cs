@@ -17,5 +17,7 @@ namespace WordCounter
             => words.Where(w => !stopWords.Contains(w, StringComparer.InvariantCultureIgnoreCase)).ToList();
 
         public int CountUniqueWords(ICollection<string> words) => words.Distinct(StringComparer.InvariantCultureIgnoreCase).Count();
+
+        public double CalculateAverageWordLength(ICollection<string> words) => words.Count > 0 ? Math.Round(words.Select(word => word.Length).Average(), 2) : 0.00;
     }
 }

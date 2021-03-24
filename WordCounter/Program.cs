@@ -11,7 +11,7 @@
         {
             string text = _fileLoader.ReadTextFromFile(fileName);
             WordCountResult wordCountResult = _interactor.CountWords(text);
-            _ui.PrintResultToConsole(text, wordCountResult);
+            _ui.PrintResultToConsole(wordCountResult);
             _ui.WaitForInput();
         }
         , () =>
@@ -21,7 +21,7 @@
           {
               text = _ui.GetTextFromConsole();
               WordCountResult wordCountResult = _interactor.CountWords(text);
-              _ui.PrintResultToConsole(text, wordCountResult);
+              _ui.PrintResultToConsole(wordCountResult);
           }
       });
     }

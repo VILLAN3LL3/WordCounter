@@ -13,7 +13,10 @@ namespace WordCounter
             ICollection<string> stopwords = stopwordsProvider.GetStopWords();
             ICollection<string> filteredWords = wordSplitter.Filter(words, stopwords);
 
-            return new WordCountResult(wordSplitter.CountWords(filteredWords), wordSplitter.CountUniqueWords(filteredWords));
+            return new WordCountResult(
+                wordSplitter.CountWords(filteredWords),
+                wordSplitter.CountUniqueWords(filteredWords),
+                wordSplitter.CalculateAverageWordLength(filteredWords));
         }
     }
 }

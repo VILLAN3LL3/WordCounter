@@ -109,5 +109,30 @@ namespace WordCounter.Tests
             // Assert
             result.Should().Be(expectedCount);
         }
+
+        private static IEnumerable<TestCaseData> s_countAverageWordCountTestData
+        {
+            get
+            {
+                yield return new TestCaseData(new List<string>() { "Mary", "has", "a", "little", "lamb" }, 3.60);
+                yield return new TestCaseData(new List<string>(), 0.00);
+                yield return new TestCaseData(new List<string>() { "Humpty", "Dumpty", "sat", "on", "a", "wall", "Humpty", "Dumpty", "had", "a", "great", "fall" }, 3.92);
+            }
+        }
+
+        [Test]
+        [TestCaseSource(nameof(s_countAverageWordCountTestData))]
+        public void Should_Calcuate_Average_Word_Length_Of_Supplied_Collection(ICollection<string> stringList, double expectedCount)
+        {
+            // Arrange
+            WordCount wordCount = CreateWordCount();
+
+            // Act
+            double result = wordCount.CalculateAverageWordLength(
+                stringList);
+
+            // Assert
+            result.Should().Be(expectedCount);
+        }
     }
 }

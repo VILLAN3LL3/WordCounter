@@ -10,8 +10,8 @@ namespace WordCounter
             return Console.ReadLine();
         }
 
-        public void PrintResultToConsole(string text, WordCountResult wordCountResult) => Console.WriteLine($"The text '{text}' contains " +
-            $"{wordCountResult.NumberOfWords} words and {wordCountResult.NumberOfUniqueWords} unique words.");
+        public void PrintResultToConsole(WordCountResult wordCountResult) =>
+            Console.WriteLine($"Number of words: {wordCountResult.NumberOfWords}, unique: {wordCountResult.NumberOfUniqueWords}; average word legnth: {wordCountResult.AverageWordLength} characters");
 
         public void WaitForInput() => Console.ReadLine();
     }

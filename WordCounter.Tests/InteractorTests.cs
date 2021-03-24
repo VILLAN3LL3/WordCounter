@@ -13,13 +13,13 @@ namespace WordCounter.Tests
         {
             get
             {
-                yield return new TestCaseData("Mary has a little lamb.", new WordCountResult(4, 4));
-                yield return new TestCaseData("Mary Mary has a little lamb.", new WordCountResult(5, 4));
-                yield return new TestCaseData("Mary has an hour left.", new WordCountResult(5, 5));
-                yield return new TestCaseData("", new WordCountResult(0, 0));
-                yield return new TestCaseData("Verstörend", new WordCountResult(2, 2));
-                yield return new TestCaseData("Take Off Your Pants And Jacket", new WordCountResult(5, 5));
-                yield return new TestCaseData("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.", new WordCountResult(7, 6));
+                yield return new TestCaseData("Mary has a little lamb.", new WordCountResult(4, 4, 4.25));
+                yield return new TestCaseData("Mary Mary has a little lamb.", new WordCountResult(5, 4, 4.20));
+                yield return new TestCaseData("Mary has an hour left.", new WordCountResult(5, 5, 3.40));
+                yield return new TestCaseData("", new WordCountResult(0, 0, 0.00));
+                yield return new TestCaseData("Verstörend", new WordCountResult(2, 2, 4.50));
+                yield return new TestCaseData("Take Off Your Pants And Jacket", new WordCountResult(5, 5, 4.40));
+                yield return new TestCaseData("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.", new WordCountResult(7, 6, 6.43));
             }
         }
 
