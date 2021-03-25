@@ -15,7 +15,7 @@ namespace WordCounter.Tests
         {
             // Arrange
             FileLoader fileLoader = CreateFileLoader();
-            string[] args = new[] { "meingedicht.txt" };
+            string args = "meingedicht.txt";
             Action<string> onFilenameFound = Substitute.For<Action<string>>();
             Action onNoFilenameFound = Substitute.For<Action>();
 
@@ -35,7 +35,7 @@ namespace WordCounter.Tests
         {
             // Arrange
             FileLoader fileLoader = CreateFileLoader();
-            string[] args = Array.Empty<string>();
+            string args = string.Empty;
             Action<string> onFilenameFound = Substitute.For<Action<string>>();
             Action onNoFilenameFound = Substitute.For<Action>();
 

@@ -14,7 +14,10 @@ namespace WordCounter
         public int CountWords(ICollection<string> words) => words.Count;
 
         public ICollection<string> Filter(ICollection<string> words, ICollection<string> stopWords)
-            => words.Where(w => !stopWords.Contains(w, StringComparer.InvariantCultureIgnoreCase)).ToList();
+            => words.Where(w => !stopWords.Contains(w, StringComparer.InvariantCultureIgnoreCase)).OrderBy(word => word).ToList();
+
+        public ICollection<string> Sort(ICollection<string> words)
+            => words.OrderBy(word => word).ToList();
 
         public int CountUniqueWords(ICollection<string> words) => words.Distinct(StringComparer.InvariantCultureIgnoreCase).Count();
 

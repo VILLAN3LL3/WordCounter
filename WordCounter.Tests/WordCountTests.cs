@@ -122,7 +122,7 @@ namespace WordCounter.Tests
 
         [Test]
         [TestCaseSource(nameof(s_countAverageWordCountTestData))]
-        public void Should_Calcuate_Average_Word_Length_Of_Supplied_Collection(ICollection<string> stringList, double expectedCount)
+        public void Should_Calculate_Average_Word_Length_Of_Supplied_Collection(ICollection<string> stringList, double expectedCount)
         {
             // Arrange
             WordCount wordCount = CreateWordCount();
@@ -133,6 +133,30 @@ namespace WordCounter.Tests
 
             // Assert
             result.Should().Be(expectedCount);
+        }
+
+        private static IEnumerable<TestCaseData> s_sortTestData
+        {
+            get
+            {
+                yield return new TestCaseData(new List<string>() { "Mary", "has", "a", "little", "lamb" }, new List<string>() { "a", "has", "lamb", "little", "Mary" });
+                yield return new TestCaseData(new List<string>(), new List<string>());
+            }
+        }
+
+        [Test]
+        [TestCaseSource(nameof(s_sortTestData))]
+        public void Should_Sort_Supplied_Collection(ICollection<string> stringList, ICollection<string> expectedList)
+        {
+            // Arrange
+            WordCount wordCount = CreateWordCount();
+
+            // Act
+            ICollection<string> result = wordCount.Sort(
+                stringList);
+
+            // Assert
+            result.Should().BeEquivalentTo(expectedList);
         }
     }
 }

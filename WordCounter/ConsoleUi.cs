@@ -1,18 +1,38 @@
-﻿using System;
-
-namespace WordCounter
+﻿namespace WordCounter
 {
     public class ConsoleUi
     {
-        public string GetTextFromConsole()
+        private IConsole _console;
+
+        public ConsoleUi(IConsole console)
         {
-            Console.WriteLine("Enter the text");
-            return Console.ReadLine();
+            _console = console;
         }
 
-        public void PrintResultToConsole(WordCountResult wordCountResult) =>
-            Console.WriteLine($"Number of words: {wordCountResult.NumberOfWords}, unique: {wordCountResult.NumberOfUniqueWords}; average word legnth: {wordCountResult.AverageWordLength} characters");
+        public IConsole GetConsole() => _console;
 
-        public void WaitForInput() => Console.ReadLine();
+        public string GetTextFromConsole()
+        {
+            _console.WriteLine("Enter the text");
+            return _console.ReadLine();
+        }
+
+        public void PrintResultToConsole(WordCountResult wordCountResult, bool isIndexOptionSet)
+        {
+
+            _console.WriteLine($"Number of words: {wordCountResult.NumberOfWords}, " +
+                $"unique: {wordCountResult.NumberOfUniqueWords}; " +
+                $"average word length: {string.Format("{0:0.00}", wordCountResult.AverageWordLength)} characters");
+            if (isIndexOptionSet)
+            {
+                _console.WriteLine("Index:");
+                foreach (string word in wordCountResult.Index)
+                {
+                    _console.WriteLine(word);
+                }
+            }
+        }
+
+        public void WaitForInput() => _console.ReadLine();
     }
 }

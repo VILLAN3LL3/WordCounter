@@ -6,17 +6,18 @@ namespace WordCounter
     {
         public WordCountResult CountWords(string text)
         {
-            var wordSplitter = new WordCount();
+            var wordCount = new WordCount();
             var stopwordsProvider = new StopwordsProvider();
 
-            ICollection<string> words = wordSplitter.SplitWords(text);
+            ICollection<string> words = wordCount.SplitWords(text);
             ICollection<string> stopwords = stopwordsProvider.GetStopWords();
-            ICollection<string> filteredWords = wordSplitter.Filter(words, stopwords);
+            ICollection<string> filteredWords = wordCount.Filter(words, stopwords);
 
             return new WordCountResult(
-                wordSplitter.CountWords(filteredWords),
-                wordSplitter.CountUniqueWords(filteredWords),
-                wordSplitter.CalculateAverageWordLength(filteredWords));
+                wordCount.CountWords(filteredWords),
+                wordCount.CountUniqueWords(filteredWords),
+                wordCount.CalculateAverageWordLength(filteredWords),
+                wordCount.Sort(filteredWords));
         }
     }
 }

@@ -1,7 +1,8 @@
 {
   "profiles": {
     "WordCounter": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "-index"
     }
   }
 }

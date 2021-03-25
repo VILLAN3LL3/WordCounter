@@ -5,14 +5,14 @@ namespace WordCounter
 {
     public class FileLoader
     {
-        public void GetFilename(string[] args, Action<string> onFilenameFound, Action onNoFilenameFound)
+        public void GetFilename(string filePath, Action<string> onFilenameFound, Action onNoFilenameFound)
         {
-            if (args.Length > 0)
+            if (string.IsNullOrWhiteSpace(filePath))
             {
-                onFilenameFound(args[0]);
+                onNoFilenameFound();
                 return;
             }
-            onNoFilenameFound();
+            onFilenameFound(filePath);
         }
 
         public string ReadTextFromFile(string fileName) => File.ReadAllText(fileName);
