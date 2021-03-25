@@ -9,25 +9,25 @@
 
         internal static void Main(string[] args)
         {
-            var commandLineArg = _argHandler.ReadArgs(args);
-            _fileLoader.GetFilename(commandLineArg.FilePath,
-            (fileName) =>
-        {
-            string text = _fileLoader.ReadTextFromFile(fileName);
-            WordCountResult wordCountResult = _interactor.CountWords(text);
-            _ui.PrintResultToConsole(wordCountResult, commandLineArg.IsIndexOptionSet);
-            _ui.WaitForInput();
-        }
-        , () =>
-      {
-          string text;
-          while (true)
-          {
-              text = _ui.GetTextFromConsole();
-              WordCountResult wordCountResult = _interactor.CountWords(text);
-              _ui.PrintResultToConsole(wordCountResult, commandLineArg.IsIndexOptionSet);
-          }
-      });
+            CommandLineArgument commandLineArg = _argHandler.ReadArgs(args);
+
+            if (!string.IsNullOrWhiteSpace(commandLineArg.FilePath))
+            {
+                string text = _fileLoader.ReadTextFromFile(commandLineArg.FilePath);
+                WordCountResult wordCountResult = _interactor.CountWords(text, _fileLoader.ReadLinesFromFile(commandLineArg.DictionaryPath));
+                _ui.PrintResultToConsole(wordCountResult, commandLineArg.IsIndexOptionSet);
+                _ui.WaitForInput();
+            }
+            else
+            {
+                string text;
+                while (true)
+                {
+                    text = _ui.GetTextFromConsole();
+                    WordCountResult wordCountResult = _interactor.CountWords(text, _fileLoader.ReadLinesFromFile(commandLineArg.DictionaryPath));
+                    _ui.PrintResultToConsole(wordCountResult, commandLineArg.IsIndexOptionSet);
+                }
+            }
         }
     }
 }

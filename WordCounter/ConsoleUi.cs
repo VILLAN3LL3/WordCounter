@@ -1,4 +1,7 @@
-﻿namespace WordCounter
+﻿using System.Globalization;
+using System.Linq;
+
+namespace WordCounter
 {
     public class ConsoleUi
     {
@@ -19,17 +22,25 @@
 
         public void PrintResultToConsole(WordCountResult wordCountResult, bool isIndexOptionSet)
         {
+            PrintSummary(wordCountResult);
 
-            _console.WriteLine($"Number of words: {wordCountResult.NumberOfWords}, " +
-                $"unique: {wordCountResult.NumberOfUniqueWords}; " +
-                $"average word length: {string.Format("{0:0.00}", wordCountResult.AverageWordLength)} characters");
             if (isIndexOptionSet)
             {
-                _console.WriteLine("Index:");
-                foreach (string word in wordCountResult.Index)
-                {
-                    _console.WriteLine(word);
-                }
+                PrintIndex(wordCountResult);
+            }
+        }
+
+        private void PrintSummary(WordCountResult wordCountResult) =>
+                    _console.WriteLine($"Number of words: {wordCountResult.NumberOfWords}, " +
+                        $"unique: {wordCountResult.NumberOfUniqueWords}; " +
+                        $"average word length: {string.Format(CultureInfo.InvariantCulture, "{0:0.00}", wordCountResult.AverageWordLength)} characters");
+
+        private void PrintIndex(WordCountResult wordCountResult)
+        {
+            _console.WriteLine($"Index (unknown: {wordCountResult.Index.Where(i => i.IsUnknown).Count()}):");
+            foreach (IndexResult indexItem in wordCountResult.Index)
+            {
+                _console.WriteLine(indexItem.ToString());
             }
         }
 

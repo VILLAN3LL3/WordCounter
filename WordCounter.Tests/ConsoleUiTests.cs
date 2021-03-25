@@ -41,17 +41,26 @@ namespace WordCounter.Tests
             get
             {
                 yield return new TestCaseData(
-                    new WordCountResult(4, 4, 4.25, new List<string>() { "has", "lamb", "little", "Mary" }),
+                    new WordCountResult(4, 4, 4.25, new List<IndexResult>() {
+                        new IndexResult("has", true),
+                        new IndexResult("lamb", true),
+                        new IndexResult("little", true),
+                        new IndexResult("Mary", true) }),
                     false,
-                    "Number of words: 4, unique: 4; average word length: 4,25 characters\r\n");
+                    "Number of words: 4, unique: 4; average word length: 4.25 characters\r\n");
                 yield return new TestCaseData(
-                    new WordCountResult(5, 4, 4.20, new List<string>() { "has", "lamb", "little", "Mary", "Mary" }),
+                    new WordCountResult(5, 4, 4.20, new List<IndexResult>() {
+                        new IndexResult("has", false),
+                        new IndexResult("lamb", true),
+                        new IndexResult("little", false),
+                        new IndexResult("Mary", true),
+                        new IndexResult("Mary", true) }),
                     true,
-                    "Number of words: 5, unique: 4; average word length: 4,20 characters\r\nIndex:\r\nhas\r\nlamb\r\nlittle\r\nMary\r\nMary\r\n");
+                    "Number of words: 5, unique: 4; average word length: 4.20 characters\r\nIndex (unknown: 3):\r\nhas\r\nlamb*\r\nlittle\r\nMary*\r\nMary*\r\n");
                 yield return new TestCaseData(
-                    new WordCountResult(0, 0, 0.00, new List<string>()),
+                    new WordCountResult(0, 0, 0.00, new List<IndexResult>()),
                     true,
-                    "Number of words: 0, unique: 0; average word length: 0,00 characters\r\nIndex:\r\n");
+                    "Number of words: 0, unique: 0; average word length: 0.00 characters\r\nIndex (unknown: 0):\r\n");
             }
         }
 

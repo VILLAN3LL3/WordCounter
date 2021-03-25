@@ -2,7 +2,7 @@
   "profiles": {
     "WordCounter": {
       "commandName": "Project",
-      "commandLineArgs": "-index"
+      "commandLineArgs": "-index -dictionary=dict.txt"
     }
   }
 }
