@@ -1,4 +1,6 @@
-﻿namespace WordCounter
+﻿using System;
+
+namespace WordCounter
 {
     internal static class Program
     {
@@ -24,6 +26,10 @@
                 while (true)
                 {
                     text = _ui.GetTextFromConsole();
+                    if (string.IsNullOrWhiteSpace(text))
+                    {
+                        Environment.Exit(0);
+                    }
                     WordCountResult wordCountResult = _interactor.CountWords(text, _fileLoader.ReadLinesFromFile(commandLineArg.DictionaryPath));
                     _ui.PrintResultToConsole(wordCountResult, commandLineArg.IsIndexOptionSet);
                 }
